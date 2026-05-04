@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>sakheerabrari.com</title>
+    
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --bg-white: #ffffff;
+            --border-light: #efefef;
+            --green-gradient: linear-gradient(45deg, #2ecc71, #27ae60, #11998e);
+            --text-dark: #262626;
+            --text-grey: #8e8e8e;
+            --btn-green: #27ae60;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding-bottom: 60px;
+        }
+
+        /* Top Bar */
+        .ig-top-bar {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            background: #fff;
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Profile Section */
+        .profile-header { padding: 16px; }
+
+        .profile-pic-ring {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: var(--green-gradient);
+            padding: 3px; margin-right: 20px;
+        }
+        
+        .profile-pic { 
+            width: 100%; height: 100%; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 2px solid #fff;
+        }
+
+        .stat-box { text-align: center; flex: 1; }
+        .stat-num { font-weight: 600; font-size: 1.1rem; display: block; }
+        .stat-label { font-size: 13px; color: var(--text-dark); }
+
+        /* Follow Button - Green Theme */
+        .btn-follow {
+            background: var(--btn-green);
+            color: #fff; border: none; font-weight: 600;
+            font-size: 14px; border-radius: 8px; padding: 7px 0;
+            width: 100%; transition: 0.3s;
+        }
+        .btn-follow.following {
+            background: #efefef;
+            color: #000;
+        }
+
+        .btn-msg {
+            background: #efefef; border: none;
+            color: #000; font-weight: 600; font-size: 14px;
+            border-radius: 8px; padding: 7px 0; width: 100%;
+        }
+
+        /* Green Highlights */
+        .highlights-scroll {
+            display: flex; overflow-x: auto; gap: 18px;
+            padding: 10px 16px; scrollbar-width: none;
+        }
+        .highlights-scroll::-webkit-scrollbar { display: none; }
+
+        .h-item { text-align: center; min-width: 65px; }
+        .h-circle {
+            width: 65px; height: 65px; border-radius: 50%;
+            background: #fff; border: 1px solid var(--border-light);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 5px; font-size: 1.5rem; transition: 0.2s;
+        }
+        .h-circle:hover { border-color: var(--btn-green); }
+
+        /* HD Photo Grid */
+        .photo-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+        .photo-box { aspect-ratio: 1 / 1; overflow: hidden; background: #fafafa; }
+        .photo-box img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: opacity 0.3s;
+        }
+        .photo-box:hover img { opacity: 0.8; }
+
+        /* Professional Footer */
+        .main-footer {
+            background: #f8f9fa; border-top: 1px solid var(--border-light);
+            padding: 40px 20px; margin-top: 20px;
+        }
+        .footer-title { color: var(--btn-green); font-weight: 700; }
+        .contact-link { color: #555; text-decoration: none; display: block; margin: 8px 0; font-size: 14px; }
+        .contact-link i { color: var(--btn-green); margin-right: 10px; }
+
+        /* Mobile Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; height: 50px;
+            background: #fff; border-top: 1px solid var(--border-light);
+            display: flex; justify-content: space-around; align-items: center;
+            font-size: 1.4rem; z-index: 1001;
+        }
+        .bottom-nav i { color: #262626; }
+
+        @media (min-width: 768px) {
+            .container { max-width: 935px; }
+            .photo-grid { gap: 28px; padding-top: 30px; }
+            .profile-pic-ring { width: 150px; height: 150px; }
+            .bottom-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ig-top-bar">sakheer_abrari <i class="bi bi-patch-check-fill ms-1 text-primary" style="font-size: 14px;"></i></div>
+
+    <div class="container">
+        <!-- Profile Header -->
+        <div class="profile-header d-flex align-items-center">
+            <div class="profile-pic-ring">
+                <!-- Change your profile photo here -->
+                <img src="sakheer.jpeg" class="profile-pic" alt="Sakheer">
+            </div>
+            <div class="d-flex flex-grow-1">
+                <div class="stat-box"><span class="stat-num">18</span><span class="stat-label">Posts</span></div>
+                <div class="stat-box"><span class="stat-num" id="follower-count">124k</span><span class="stat-label">Followers</span></div>
+                <div class="stat-box"><span class="stat-num">450</span><span class="stat-label">Following</span></div>
+            </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="px-3 mb-3">
+            <div class="fw-bold">Sakheer Abrari</div>
+            <div class="text-secondary" style="font-size: 14px;">Full-stack Developer & AI Engineer</div>
+            <p class="mb-1" style="font-size: 14px;">
+                🚀 Web Solutions | Digital Storefronts<br>
+                🧠 Psychology & Human-AI Interaction<br>
+                📍 Kerala, India
+            </p>
+            <a href="#" class="text-decoration-none fw-bold" style="color: #00376b; font-size: 14px;">sakheer.abrari.portfolio</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="px-3 row g-2 mb-4">
+            <div class="col-6">
+                <button class="btn-follow" id="followBtn" onclick="toggleFollow()">Follow</button>
+            </div>
+            <div class="col-6">
+                <button class="btn-msg">Message</button>
+            </div>
+        </div>
+
+        <!-- Green Highlights -->
+        <div class="highlights-scroll mb-4">
+            <div class="h-item"><a href="#" class="text-decoration-none text-dark"><div class="h-circle"><i class="bi bi-link-45deg" style="color:#27ae60"></i></div><span class="stat-label">Links</span></a></div>
+            <div class="h-item"><a href="#" class="text-decoration-none text-dark"><div class="h-circle"><i class="bi bi-code-slash" style="color:#27ae60"></i></div><span class="stat-label">Projects</span></a></div>
+            <div class="h-item"><a href="#" class="text-decoration-none text-dark"><div class="h-circle"><i class="bi bi-cpu" style="color:#27ae60"></i></div><span class="stat-label">AI</span></a></div>
+            <div class="h-item"><a href="#" class="text-decoration-none text-dark"><div class="h-circle"><i class="bi bi-shop" style="color:#27ae60"></i></div><span class="stat-label">Store</span></a></div>
+            <div class="h-item"><a href="#" class="text-decoration-none text-dark"><div class="h-circle"><i class="bi bi-envelope-heart" style="color:#27ae60"></i></div><span class="stat-label">Contact</span></a></div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="photo-grid" id="main-gallery"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <h5 class="footer-title">SAKHEER ABRARI</h5>
+            <p class="text-secondary small">Expert in premium web design and digital solutions.</p>
+            <a href="mailto:contact@sakheer.com" class="contact-link"><i class="bi bi-envelope"></i> contact@sakheer.com</a>
+            <a href="#" class="contact-link"><i class="bi bi-whatsapp"></i> WhatsApp Me</a>
+        </div>
+    </footer>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+        <i class="bi bi-house-door-fill"></i>
+        <i class="bi bi-search"></i>
+        <i class="bi bi-plus-square"></i>
+        <i class="bi bi-play-btn"></i>
+        <i class="bi bi-person-circle"></i>
+    </nav>
+
+    <script>
+        // 4K HD Image Generator
+        const gallery = document.getElementById('main-gallery');
+        const sampleImages = [
+            '1498050108023-c5249f4df085', '1550751827-4bd374c3f58b', '1451187580459-43490279c0fa',
+            '1581091226825-a6a2a5aee158', '1518770660439-4636190af475', '1555066931-4365d14bab8c',
+            '1517694712202-14dd9538aa97', '1531297484001-80022131f5a1', '1485827404703-89b55fcc595e',
+            '1526374965328-7f61d4dc18c5', '1504384308090-c894fdcc538d', '1496171367470-9ed9a91ea931'
+        ];
+
+        sampleImages.forEach(imgId => {
+            const div = document.createElement('div');
+            div.className = 'photo-box';
+            div.innerHTML = `<img src="https://images.unsplash.com/photo-${imgId}?auto=format&fit=crop&q=100&w=800" alt="Work" loading="lazy">`;
+            gallery.appendChild(div);
+        });
+
+        // 124k Follower Logic
+        let count = 124000;
+        let following = false;
+
+        function toggleFollow() {
+            const btn = document.getElementById('followBtn');
+            const display = document.getElementById('follower-count');
+            if (!following) {
+                following = true;
+                btn.innerText = 'Following';
+                btn.classList.add('following');
+                count++;
+            } else {
+                following = false;
+                btn.innerText = 'Follow';
+                btn.classList.remove('following');
+                count--;
+            }
+            display.innerText = (count / 1000).toFixed(0) + "k";
+        }
+    </script>
+</body>
+</html>
