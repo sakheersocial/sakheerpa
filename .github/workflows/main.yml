@@ -1,0 +1,28 @@
+0484 21043
+2421043
+Kugram
+Blinker
+Suthran
+Sherugran
+Mayavi
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ] # നിങ്ങളുടെ ബ്രാഞ്ച് 'main' അല്ലെങ്കിൽ 'master' ആണെന്ന് ഉറപ്പുവരുത്തുക
+
+jobs:
+  build_site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v
